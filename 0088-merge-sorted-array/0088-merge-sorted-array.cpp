@@ -23,8 +23,6 @@ public:
             j++;
         }
         nums1 = ans;
-
-
     }
 
 };
