@@ -8,7 +8,6 @@ public:
         }
         for(auto it : mp){
             if(it.second == 1){
-                cout<<it.first<<endl;
                 ans =  it.first;
             }
         }
