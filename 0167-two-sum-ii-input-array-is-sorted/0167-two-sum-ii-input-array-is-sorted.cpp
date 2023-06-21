@@ -7,10 +7,10 @@ public:
         int e = n-1;
         while(s<e){
             if(numbers[s]+numbers[e] == target){
-                int a = s+1;
-                int b = e+1;
-                ans.push_back(a);
-                ans.push_back(b);
+                // int a = s+1;
+                // int b = e+1;
+                ans.push_back(s+1);
+                ans.push_back(e+1);
                 s++;
                 e--;
             }
