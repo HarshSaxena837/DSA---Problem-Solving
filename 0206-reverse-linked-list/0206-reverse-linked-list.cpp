@@ -10,37 +10,22 @@
  */
 class Solution {
     private:
-    void reverse(ListNode* &head, ListNode* prev, ListNode* curr){
-        // base  case
-        if(curr == NULL ){
+    void solve(ListNode* &head, ListNode* curr, ListNode* prev){
+        if(curr == NULL){
             head = prev;
             return;
         }
-        ListNode* forward = curr->next;
-        reverse(head,curr,forward);
+
+        ListNode* fow = curr->next;
+        solve(head,fow, curr);
         curr->next = prev;
-
     }
-
 public:
     ListNode* reverseList(ListNode* head) {
-
-        ListNode* prev = NULL;
         ListNode* curr = head;
-        
-        reverse(head,prev,curr);
+        ListNode* prev = NULL;
+
+        solve(head, curr, prev);
         return head;
-        // if(head == NULL || head->next == NULL){
-        //     return head;
-        // }
-        // ListNode* prev = NULL;
-        // ListNode* curr = head;
-        // while(curr != NULL){
-        //     ListNode* forward = curr->next;
-        //     curr->next = prev;
-        //     prev = curr;
-        //     curr = forward;
-        // }
-        // return prev;
     }
 };
