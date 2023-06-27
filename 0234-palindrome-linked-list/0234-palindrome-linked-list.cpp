@@ -52,8 +52,8 @@ public:
             head1 = head1->next;
             head2 = head2 -> next;
         }
-        temp = mid->next;
-        mid->next = reverse(temp);
+        // temp = mid->next;
+        // mid->next = reverse(temp);
         return true;
     }
 };
