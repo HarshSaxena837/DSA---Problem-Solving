@@ -20,9 +20,14 @@ public:
             curr = curr->next;
             len++;
         }
+        // loop the list
         curr->next = head;
+        
+        // handling the case when k is greater than length of list
         k = k%len;
         k = len - k;
+
+        // finding the node where we have to break the loop
         while(k--){
             curr = curr->next;
         }
