@@ -24,7 +24,7 @@ public:
         curr->next = head;
         
         // handling the case when k is greater than length of list
-        k = k%len;
+        k = k % len;
         k = len - k;
 
         // finding the node where we have to break the loop
