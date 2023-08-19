@@ -9,23 +9,17 @@
  * };
  */
 class Solution {
-    private:
-    void solve(ListNode* &head, ListNode* curr, ListNode* prev){
-        if(curr == NULL){
-            head = prev;
-            return;
-        }
-
-        ListNode* fow = curr->next;
-        solve(head,fow, curr);
-        curr->next = prev;
-    }
 public:
     ListNode* reverseList(ListNode* head) {
-        ListNode* curr = head;
         ListNode* prev = NULL;
+        ListNode* curr = head;
 
-        solve(head, curr, prev);
-        return head;
+        while(curr!=NULL){
+            ListNode* forward = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = forward;
+        }
+    return prev;
     }
 };
