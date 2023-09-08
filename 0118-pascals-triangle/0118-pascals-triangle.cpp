@@ -12,10 +12,27 @@ public:
         return ansRow;
     }
     vector<vector<int>> generate(int numRows) {
-        vector<vector<int>> ans;
-        for(int i=1; i<=numRows; i++){
-            ans.push_back(generateRow(i));
+         vector<vector<int>> res;
+        int i,j,k;
+        for(i=0;i<numRows;i++)
+        {
+            vector<int> temp;
+            for(j=0;j<=i;j++)
+            {
+                if(j==0 || j == i)
+                {
+                    temp.push_back(1);
+                }
+                else
+                {
+                    k=res[i-1][j]+res[i-1][j-1];
+                    temp.push_back(k);
+                }
+
+            }
+            
+            res.push_back(temp);
         }
-        return ans;
+        return res;
     }
 };
