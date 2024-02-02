@@ -12,25 +12,32 @@ class Solution{
     /*You are required to complete this method */
     int atoi(string s) {
         //Your code here
-        for(int i=0;i<s.size();i++){
-            if((s[i] >='a' && s[i]<='z'))
+        for(int i = 0; i<=s.length(); i++){
+            if(s[i] >= 'a'  && s[i] <= 'z'){
                 return -1;
-            if(i>0 && s[i] =='-')
+            }
+            if(i > 0 && s[i] == '-'){
                 return -1;
+            }
         }
-        int ans=0; 
-        bool flag=false;
-        for(int i=0;i<s.size();i++){
-            if(i==0 && s[i]=='-')
-                flag=true;
+        int ans = 0 ;
+        bool flag = false;
+        for(int i = 0; i<s.length(); i++){
+            if(i == 0 && s[i] == '-'){
+                flag = true;
+            }
             else{
-                ans=ans*10 + (s[i]-'0');
-            }    
+                ans = ans*10 + (s[i] - '0');
+            }
         }
-        if(flag==true)
-            return -1*ans;
-        return ans;    
-
+        
+        if(flag == true){
+            return ans*-1;
+        }
+        else{
+            return ans;
+        }
+        
     }
 };
 
