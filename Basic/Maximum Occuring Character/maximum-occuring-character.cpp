@@ -13,13 +13,13 @@ class Solution
     char getMaxOccuringChar(string str)
     {
         // Your code here
-        map<char,int>m;
+        map<char,int>mp;
         for(int i=0;i<str.length();i++){
-            m[str[i]]++;
+            mp[str[i]]++;
         }
         char ans;
         int max=INT_MIN;
-        for(auto it:m){
+        for(auto it:mp){
             if(max<it.second){
                 max=it.second;
                 ans=it.first;
@@ -27,6 +27,7 @@ class Solution
             }
         }
         return ans;
+        
     }
 
 };
