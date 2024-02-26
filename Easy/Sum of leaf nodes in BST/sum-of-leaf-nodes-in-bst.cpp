@@ -38,7 +38,7 @@ class Solution
 {
     public:
         /*You are required to complete below method */
-        void traverse(Node *root,int&sum){
+        void solve(Node *root,int&sum){
             if(!root){
                 return;
             }
@@ -46,13 +46,13 @@ class Solution
                 sum+=root->data;
                 return;
             }
-            traverse(root->left,sum);
-            traverse(root->right,sum);
+            solve(root->left,sum);
+            solve(root->right,sum);
         }
         int sumOfLeafNodes(Node *root ){
              /*Your code here */
              int sum = 0;
-             traverse(root,sum);
+             solve(root,sum);
              return sum;
         }
 };
