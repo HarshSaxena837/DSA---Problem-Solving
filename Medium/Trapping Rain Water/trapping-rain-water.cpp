@@ -5,44 +5,45 @@ using namespace std;
 
 
 // } Driver Code Ends
+
+
+#include<vector>
 class Solution{
 
     // Function to find the trapped water between the blocks.
     public:
-    vector<long long> getleftMax(int arr[], int n){
-        vector<long long> left(n);
-        
-        left[0] = arr[0];
+    vector<int> findleft(int arr[], int n){
+        vector<int> leftmax(n);
+        leftmax[0] = arr[0];
         for(int i = 1; i<n; i++){
-            left[i] = max(left[i-1], (long long)arr[i]);
-        }
-        return left;
-    }
-    
-    vector<long long> getrightMax(int arr[], int n){
-        vector<long long> right(n);
-        right[n-1] = arr[n-1];
-        for(int i = n-2; i>=0; i--){
-            right[i] = max(right[i+1], (long long)arr[i]);
+            leftmax[i] = max(leftmax[i-1], arr[i]);
         }
         
-        return right;
+        return leftmax;
+        
+    }
+    vector<int> findright(int arr[], int n){
+        vector<int> rightmax(n);
+        rightmax[n-1] = arr[n-1];
+        for(int i = n-2; i>=0; i--){
+            rightmax[i] = max(rightmax[i+1], arr[i]);
+        }
+        
+        return rightmax;
+        
     }
     long long trappingWater(int arr[], int n){
         // code here
-        
-        vector<long long> leftmax = getleftMax(arr, n);
-        vector<long long> rightmax = getrightMax(arr, n);
-        
-        long long W = 0;
-        
+        vector<int> leftmax = findleft(arr, n);
+        vector<int> rightmax = findright(arr, n);
+        long long  w = 0;
         for(int i = 0; i<n; i++){
-            long long sum = min(leftmax[i], rightmax[i]) - arr[i];
+            int sum = min(leftmax[i], rightmax[i]) - arr[i];
             
-            W += sum;
+            w += sum;
         }
         
-        return W;
+        return w;
     }
 };
 
