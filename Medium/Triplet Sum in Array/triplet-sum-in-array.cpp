@@ -11,33 +11,20 @@ class Solution{
     bool find3Numbers(int A[], int n, int X)
     {
         //Your Code Here
-        sort(A, A+n);
-        
-        for(int i = 0; i<n-2; i++){
-            int target = X - A[i];
-            int left = i+1;
-            int right = n-1;
-            
-            while(left < right){
-                int currsum = A[left] + A[right];
-                
-                if(target == currsum){
+        unordered_set<int> set;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int required = X - (A[i] + A[j]);
+                if (set.count(required) > 0) {
                     return true;
                 }
-                
-                else if(target > currsum){
-                    left++;
-                }
-                else{
-                    right--;
-                }
             }
-            
-            
+            // Add the current element to the set
+            set.insert(A[i]);
         }
         return false;
     }
-
+    
 };
 
 //{ Driver Code Starts.
