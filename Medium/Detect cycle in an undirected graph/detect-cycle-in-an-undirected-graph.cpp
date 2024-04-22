@@ -6,54 +6,58 @@ using namespace std;
 class Solution {
   public:
     // Function to detect cycle in an undirected graph.
-    bool isCycle(vector<int> adj[], int u, vector<bool>& visited, int parent){
-        visited[u] = true;
-        
-        for(int &v : adj[u]){
-            if(v == parent) continue;
-            
-            if(visited[v]) {
-                return true;
-            }
-            
-            if(isCycle(adj, v, visited, u)){
-                return true;
-            }
+    vector<int> rank;
+    vector<int> parent;
+    
+    int find(int x){
+        if(x == parent[x]){
+            return x;
         }
-        return false;
+        
+        return parent[x] = find(parent[x]);
     }
     
-    bool bfs(vector<int> adj[], int u, vector<bool>& visited){
-        queue<pair<int,int>> q;
-        q.push({u, -1});
-        visited[u] = true;
+    void Union(int x, int y){
+        int x_parent = find(x);
+        int y_parent = find(y);
         
-        while(!q.empty()){
-            pair<int,int> P = q.front();
-            q.pop();
-            
-            int source = P.first;
-            int parent = P.second;
-            
-            for(int &v : adj[source]){
-                if(visited[v] == false){
-                    visited[v] = true;
-                    q.push({v, source}); 
-                }
-                else if(v != parent){
-                    return true;
-                }
-            }
+        if(x_parent == y_parent){
+            return;
         }
-        return false;
+        
+        if(rank[x_parent] > rank[y_parent]){
+            parent[y_parent] = x_parent;
+        }
+        else if(rank[x_parent] < rank[y_parent]){
+            parent[x_parent] = y_parent;
+        }
+        else{
+            parent[x_parent] = y_parent;
+            rank[y_parent]++;
+        }
     }
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
-        vector<bool> visited(V, false);
+        rank.resize(V);
+        parent.resize(V);
         
-        for(int i = 0; i<V; i++){
-            if(!visited[i] && bfs(adj, i, visited)){
-                return true;
+        for(int i = 0 ;i<V; i++){
+            parent[i] = i;
+            rank[i] = 1;
+        }
+        
+        for(int u = 0 ;u <V; u++){
+            for(int &v : adj[u]){
+                if(u < v){
+                    int parent_u = find(u);
+                    int parent_v = find(v);
+                    
+                    if(parent_u == parent_v){
+                        return true;
+                    }
+                    
+                    Union(u , v);
+                }
             }
         }
         return false;
