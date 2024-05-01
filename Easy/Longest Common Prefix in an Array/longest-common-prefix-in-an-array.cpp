@@ -14,24 +14,20 @@ class Solution{
     {
         // your code here
         sort(arr, arr+N);
-        
         string start = arr[0];
         string end = arr[N-1];
         
+        int i =  0;
         string ans = "";
-        int i = 0;
         while(start[i] == end[i]){
             ans.push_back(start[i]);
             i++;
         }
-        
         if(ans == ""){
             return "-1";
         }
         
         return ans;
-        
-        
         
     }
 };
