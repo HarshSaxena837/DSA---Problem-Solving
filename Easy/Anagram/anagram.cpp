@@ -11,18 +11,24 @@ class Solution
     bool isAnagram(string a, string b){
         
         // Your code here
-        if(a.size() != b.size()) return false;
+        unordered_map<int, int> mp;
         
-        sort(a.begin(), a.end());
-        sort(b.begin(), b.end());
-        
-        if(a == b){
-            return true;
+        for(int i = 0 ; i<a.size(); i++){
+            mp[a[i]]++;
+            
         }
-        return false;
+        for(int i = 0 ; i<b.size(); i++){
+            mp[b[i]]--;
+            
+        }
         
+        for(auto it : mp){
+            if(it.second != 0){
+                return false;
+            }
+        }
         
-        
+        return true;
         
     }
 
